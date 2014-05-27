@@ -1,4 +1,4 @@
-(defproject cpath-clj "0.1.0-SNAPSHOT"
+(defproject cpath-clj "0.1.0"
   :description "Classpath Utilities for Clojure"
   :url "https://github.com/xsc/cpath-clj"
   :license {:name "Eclipse Public License"
