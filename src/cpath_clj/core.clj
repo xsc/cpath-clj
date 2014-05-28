@@ -39,8 +39,8 @@
   [^URL url]
   (let [^File f (io/file url)]
     (when (.isDirectory f)
-      (->> (io/file url)
-           (recursive-directory-files nil)
+      (->> (.listFiles f)
+           (mapcat #(recursive-directory-files nil %))
            (mapv
              (fn [[path ^File f]]
                [path (.toURI f)]))))))
