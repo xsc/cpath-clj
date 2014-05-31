@@ -120,12 +120,12 @@
 
 (defn resources
   "Find all files on the classpath that are children of resources
-   with the given path. The result will be a map associating the path
+   with the given base. The result will be a map associating the path
    relative to the given base with a seq of URIs pointing to the resources."
-  [path]
-  (->> (resources* path)
-       (mapcat resource-file-uris)
-       (reduce
-         (fn [m [^String path ^URI uri]]
-           (update-in m [path] (fnil conj []) uri))
-         {})))
+  ([] (resources ""))
+  ([base]
+   (->> (child-resources base)
+        (reduce
+          (fn [m [^String path ^URI uri]]
+            (update-in m [path] (fnil conj []) uri))
+          {}))))
