@@ -83,6 +83,32 @@
       (.getResources path)
       (enumeration-seq)))
 
+;; ## Resource Lookup Protocol
+
+(defprotocol ResourceLookup
+  "Protocol for values that allow resource lookups."
+  (child-resources [this]
+    "Return a seq of path/URI pairs describing resources."))
+
+(extend-protocol ResourceLookup
+  URL
+  (child-resources [url]
+    (resource-file-uris url))
+
+  URI
+  (child-resources [uri]
+    (resource-file-uris (.toURL ^URI uri)))
+
+  File
+  (child-resources [f]
+    (-> (.toURI ^File f)
+        (.toURL)
+        (resource-file-uris)))
+
+  String
+  (child-resources [path]
+    (mapcat resource-file-uris (resources* path))))
+
 (defn resources
   "Find all files on the classpath that are children of resources
    with the given path. The result will be a map associating the path
