@@ -60,7 +60,11 @@
   (let [^String path (.getPath url)
         idx (.lastIndexOf path "!")]
     (if (neg? idx)
-      (cp/filenames-in-jar (JarFile. (io/file url)))
+      (->> (cp/filenames-in-jar (JarFile. (io/file url)))
+           (map
+             (juxt
+               #(str "/" %)
+               #(jar-content-uri url %))))
       (let [jar-location (URL. (subs path 0 idx))
             jar-file (JarFile. (io/file jar-location))
             prefix (subs path (+ idx 2))
@@ -69,7 +73,9 @@
              (filter #(.startsWith ^String % prefix))
              (map
                (juxt
-                 #(subs % prefix-length)
+                 (if (= prefix "")
+                   #(str "/" %)
+                   #(subs % prefix-length))
                  #(jar-content-uri jar-location %))))))))
 
 ;; ## Classpath Inspection
