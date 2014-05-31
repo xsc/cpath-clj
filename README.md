@@ -4,6 +4,7 @@ __cpath-clj__ is a small library to transparently collect files on the classpath
 given base directory. Since that directory might be located inside a JAR this is not always
 trivial.
 
+[![Build Status](https://travis-ci.org/xsc/cpath-clj.svg?branch=master)](https://travis-ci.org/xsc/cpath-clj)
 [![endorse](https://api.coderwall.com/xsc/endorsecount.png)](https://coderwall.com/xsc)
 
 ## Usage
