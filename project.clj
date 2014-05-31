@@ -8,7 +8,8 @@
   :profiles {:test {:dependencies [[midje "1.6.3" :exclusions [joda-time]]
                                    [joda-time "2.2"]]
                     :plugins [[lein-midje "3.1.3"]]
-                    :resource-paths ["test-resources"]}}
+                    :resource-paths ["test-resources/test1"
+                                     "test-resources/test2"]}}
   :aliases {"test" ["with-profile" "+test" "midje"]
             "repl" ["with-profile" "+test" "repl"]}
   :pedantic? :abort)
