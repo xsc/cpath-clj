@@ -109,6 +109,15 @@
   (child-resources [path]
     (mapcat resource-file-uris (resources* path))))
 
+;; ## Resource Inspection
+
+(defn resource-uris
+  "Create a seq of URIs matching all children of resources with the given
+   base."
+  ([] (resource-uris ""))
+  ([base]
+   (map second (child-resources base))))
+
 (defn resources
   "Find all files on the classpath that are children of resources
    with the given path. The result will be a map associating the path
