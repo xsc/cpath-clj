@@ -38,12 +38,13 @@
 (defmethod resource-file-uris "file"
   [^URL url]
   (let [^File f (io/file url)]
-    (when (.isDirectory f)
+    (if (.isDirectory f)
       (->> (.listFiles f)
            (mapcat #(recursive-directory-files nil %))
            (mapv
              (fn [[path ^File f]]
-               [path (.toURI f)]))))))
+               [path (.toURI f)])))
+      [[(str "/" (.getName f)) (.toURI f)]])))
 
 ;; ### JAR Files
 
