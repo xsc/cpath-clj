@@ -12,7 +12,7 @@ trivial.
 __Leiningen ([via Clojars](https://clojars.org/cpath-clj))__
 
 ```clojure
-[cpath-clj "0.1.1"]
+[cpath-clj "0.1.2"]
 ```
 
 __REPL__
