@@ -26,7 +26,16 @@ __REPL__
 ```
 
 `cpath-clj.core.resources` finds all locations on the classpath with the path `static`,
-then collects the URIs of all resources residing under those locations.
+then collects the URIs of all resources residing under those locations. You can have a more
+targeted collection by supplying either a `java.io.File`, `java.net.URI` or `java.net.URL`;
+so, to traverse the directory `static` currently being the first match on the classpath:
+
+```clojure
+(require '[clojure.java.io :as io])
+
+(cp/resources (io/resource "static"))
+;; => {"/js/main.js" [#<URI file:/.../static/js/main.js>]}
+```
 
 ## License
 
