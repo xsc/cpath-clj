@@ -39,7 +39,7 @@ on the classpath:
 
 ## License
 
-Copyright &copy; 2014 Yannick Scherer
+Copyright &copy; 2014-2015 Yannick Scherer
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
