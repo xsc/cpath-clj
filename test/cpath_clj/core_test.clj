@@ -6,9 +6,9 @@
 
 (fact "about resources on the classpath"
       (let [r (cp/resources)]
-        (set (keys r)) => #{"/test.txt"
-                            "/cpath_clj/core.clj"
-                            "/cpath_clj/core_test.clj"}
+        (set (keys r)) => (contains #{"/test.txt"
+                                      "/cpath_clj/core.clj"
+                                      "/cpath_clj/core_test.clj"})
         (dissoc r "/test.txt") => (has every? #(= (count %) 1))
         (count (r "/test.txt")) => 2
         (map slurp (r "/test.txt")) => (has every? #{"Hello World!\n"})))
